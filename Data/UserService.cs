@@ -19,7 +19,7 @@ namespace FoodDelivery.Data
         // probna lista pre baze
         private List<User> _users = new List<User>
 		{
-			new User { Id = 1, FirstName = "test", LastName = "User", UserName = "testuser", Type = "Admin", longitude = 15, latitude = 15, Password = "test"}
+			new User { Id = 1, FirstName = "test", LastName = "User", UserName = "test", Type = "Admin", longitude = 15, latitude = 15, Password = "test"}
 		};	
 
 		public UserService(IOptions<AppSettings> appSettings)

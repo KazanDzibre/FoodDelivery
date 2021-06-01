@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/rule/Desktop/FoodDelivery1/FoodDelivery1.csproj": {}
+    "/home/aleksandar/Desktop/temp1/FoodDelivery/FoodDelivery1.csproj": {}
   },
   "projects": {
-    "/home/rule/Desktop/FoodDelivery1/FoodDelivery1.csproj": {
+    "/home/aleksandar/Desktop/temp1/FoodDelivery/FoodDelivery1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rule/Desktop/FoodDelivery1/FoodDelivery1.csproj",
+        "projectUniqueName": "/home/aleksandar/Desktop/temp1/FoodDelivery/FoodDelivery1.csproj",
         "projectName": "FoodDelivery1",
-        "projectPath": "/home/rule/Desktop/FoodDelivery1/FoodDelivery1.csproj",
-        "packagesPath": "/home/rule/.nuget/packages/",
-        "outputPath": "/home/rule/Desktop/FoodDelivery1/obj/",
+        "projectPath": "/home/aleksandar/Desktop/temp1/FoodDelivery/FoodDelivery1.csproj",
+        "packagesPath": "/home/aleksandar/.nuget/packages/",
+        "outputPath": "/home/aleksandar/Desktop/temp1/FoodDelivery/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/rule/.nuget/NuGet/NuGet.Config"
+          "/home/aleksandar/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -38,9 +38,17 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.11.1, )"
             }
           },
           "imports": [
@@ -53,12 +61,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
