@@ -1,5 +1,7 @@
 using AutoMapper;
 using FoodDelivery.Data;
+using FoodDelivery.Dtos;
+using FoodDelivery.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodDelivery.Controllers
@@ -17,16 +19,16 @@ namespace FoodDelivery.Controllers
 			_mapper = mapper;
 		}
 
-		// //POST users/register
-		// [HttpPost("register")]
-		// public ActionResult SignInUser(UserRegisterDto userRegisterDto)
-		// {
-			// var userModel = _mapper.Map<User>(userRegisterDto);
-			// _userService.SignInUser(userModel);
-			// _userService.SaveChanges();
+		//POST orders/post
+		[HttpPost("post")]
+		public ActionResult CreateOrder(CreateOrderDto createOrderDto)
+		{
+			var orderModel = _mapper.Map<Order>(createOrderDto);
+			_orderService.CreateOrder(orderModel);
+			_orderService.SaveChanges();
 
-			// return Ok();
-		// }
+			return Ok();
+		}
 
 		// // Ovo bi bio log in
 		// [HttpPost("authenticate")]
