@@ -15,20 +15,16 @@ namespace FoodDelivery.Data
     public class UserService : IUserService
 	{
         private readonly AppSettings _appSettings;
+        private readonly UserContext _context;
 
-        // probna lista pre baze
-        private List<User> _users = new List<User>
-		{
-			new User { Id = 1, FirstName = "test", LastName = "User", UserName = "test", Type = "Admin", longitude = 15, latitude = 15, Password = "test"}
-		};	
-
-		public UserService(IOptions<AppSettings> appSettings)
+		public UserService(IOptions<AppSettings> appSettings, UserContext context)
 		{
 			_appSettings = appSettings.Value;
+			_context = context;
 		}
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-			var user = _users.SingleOrDefault(x => x.UserName == model.UserName && x.Password == model.Password);
+			var user = _context.Users.FirstOrDefault(x => x.UserName == model.UserName && x.Password == model.Password);
 			if(user == null) return null;
 
 			var token = generateJwtToken(user);
@@ -38,17 +34,22 @@ namespace FoodDelivery.Data
 
         public IEnumerable<User> GetAll()
         {
-			return _users;
+			return _context.Users.ToList();
 		}
 
         public User GetById(int id)
         {
-			return _users.FirstOrDefault(x => x.Id == id);
+			return _context.Users.FirstOrDefault(x => x.Id == id);
         }
 
         public void SignInUser(User user)
         {
-            throw new System.NotImplementedException();
+			if(user == null)
+			{
+				throw new ArgumentNullException(nameof(user));
+			}
+
+			_context.Users.Add(user);
         }
 
 		private string generateJwtToken(User user)
@@ -64,5 +65,24 @@ namespace FoodDelivery.Data
 			var token = tokenHandler.CreateToken(tokenDescriptor);
 			return tokenHandler.WriteToken(token);
 		}
+
+        public bool SaveChanges()
+        {
+			return (_context.SaveChanges() >= 0);
+        }
+
+        public void UpdateUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteUser(User user)
+        {
+			if(user == null)
+			{
+				throw new ArgumentNullException(nameof(user));
+			}
+			_context.Users.Remove(user);
+        }
     }
 }

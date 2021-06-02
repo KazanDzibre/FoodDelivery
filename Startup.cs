@@ -8,11 +8,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
 
 namespace FoodDelivery1
 {
@@ -28,10 +30,14 @@ namespace FoodDelivery1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+			services.AddDbContext<UserContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
 			services.AddCors();
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s => { s.SerializerSettings.ContractResolver = new 
+					CamelCasePropertyNamesContractResolver();});
 			services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
+
+			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 			services.AddScoped<IUserService, UserService>();
         }
 

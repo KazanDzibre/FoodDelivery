@@ -20,6 +20,7 @@ namespace FoodDelivery.Models
 		public double latitude { get; set; }
 
 		[JsonIgnore]
+		[Required]
 		public string Password { get; set; }
 	}
 }
