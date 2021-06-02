@@ -3,13 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FoodDelivery.Data
 {
-	public class UserContext : DbContext
+	public class Context : DbContext
 	{
-		public UserContext(DbContextOptions<UserContext> options) : base(options)
+		public Context(DbContextOptions<Context> options) : base(options)
 		{
 
 		}
 
 		public DbSet<User> Users { get; set; }
+		public DbSet<Order> Orders { get; set; }
 	}
 }

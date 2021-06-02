@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -18,6 +19,8 @@ namespace FoodDelivery.Models
 		//ovo ce se tice samo drivera
 		public double longitude { get; set; }
 		public double latitude { get; set; }
+
+		public List<Order> orders = new List<Order>();
 
 		[JsonIgnore]
 		[Required]

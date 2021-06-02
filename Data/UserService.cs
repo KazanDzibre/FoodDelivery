@@ -15,9 +15,9 @@ namespace FoodDelivery.Data
     public class UserService : IUserService
 	{
         private readonly AppSettings _appSettings;
-        private readonly UserContext _context;
+        private readonly Context _context;
 
-		public UserService(IOptions<AppSettings> appSettings, UserContext context)
+		public UserService(IOptions<AppSettings> appSettings, Context context)
 		{
 			_appSettings = appSettings.Value;
 			_context = context;
