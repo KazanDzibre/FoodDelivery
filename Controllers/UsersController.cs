@@ -4,6 +4,7 @@ using FoodDelivery.Data;
 using FoodDelivery.Dtos;
 using FoodDelivery.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodDelivery.Controllers
@@ -79,6 +80,50 @@ namespace FoodDelivery.Controllers
 				return NotFound();
 			}
 			_userService.DeleteUser(userModelFromRepo);
+			_userService.SaveChanges();
+
+			return NoContent();
+		}
+
+		//PUT users/{id}
+		[HttpPut("{id}")]
+		public ActionResult UpdateUser(int id, UserRegisterDto userRegisterDto)
+		{
+			var userModelFromRepo = _userService.GetById(id);
+			if(userModelFromRepo == null)
+			{
+				return NotFound();
+			}
+			_mapper.Map(userRegisterDto,userModelFromRepo);
+
+			_userService.UpdateUser(userModelFromRepo); // ovo zapravo ne radi nista, jer ovaj mapping gore odradi to za mene, tako da ovo mozemo i da skinemo ili da implementiram UpdateUser u UserService.cs
+
+			_userService.SaveChanges();
+
+			return NoContent();
+		}
+
+		//PATCH users/{id}
+		[HttpPatch("{id}")]
+		public ActionResult PartialUserUpdate(int id, JsonPatchDocument<UserRegisterDto> patchDoc)
+		{
+			var userModelFromRepo = _userService.GetById(id);
+			if(userModelFromRepo == null)
+			{
+				return NotFound();
+			}
+
+			var userToPatch = _mapper.Map<UserRegisterDto>(userModelFromRepo);
+			patchDoc.ApplyTo(userToPatch, ModelState);
+
+			if(!TryValidateModel(userToPatch))
+			{
+				return ValidationProblem(ModelState);
+			}
+
+			_mapper.Map(userToPatch, userModelFromRepo);
+
+			_userService.UpdateUser(userModelFromRepo);
 			_userService.SaveChanges();
 
 			return NoContent();

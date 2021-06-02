@@ -73,7 +73,7 @@ namespace FoodDelivery.Data
 
         public void UpdateUser(User user)
         {
-            throw new NotImplementedException();
+			//Nothing
         }
 
         public void DeleteUser(User user)
