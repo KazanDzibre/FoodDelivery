@@ -88,7 +88,7 @@ namespace FoodDelivery.Controllers
 
 		//PATCH orders/{id}
 		[HttpPatch("{id}")]
-		public ActionResult PartialOrderUpdate(int id, JsonPatchDocument<CreateOrderDto> patchDoc)
+		public ActionResult PartialOrderUpdate(int id, JsonPatchDocument<UpdateOrderDto> patchDoc)
 		{
 			var orderModelFromRepo = _orderService.GetOrdersById(id);
 			if(orderModelFromRepo == null)
@@ -96,7 +96,7 @@ namespace FoodDelivery.Controllers
 				return NotFound();
 			}
 
-			var orderToPatch = _mapper.Map<CreateOrderDto>(orderModelFromRepo);
+			var orderToPatch = _mapper.Map<UpdateOrderDto>(orderModelFromRepo);
 			patchDoc.ApplyTo(orderToPatch, ModelState);
 
 			if(!TryValidateModel(orderToPatch))

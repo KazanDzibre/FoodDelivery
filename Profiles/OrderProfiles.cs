@@ -12,6 +12,8 @@ namespace FoodDelivery.Profiles
 			CreateMap<CreateOrderDto, Order>();
 			CreateMap<ReadOrderDto, Order>();
 			CreateMap<Order, ReadOrderDto>();
+			CreateMap<Order, UpdateOrderDto>();
+			CreateMap<UpdateOrderDto, Order>();
 		}
 	}
 }

@@ -49,7 +49,7 @@ namespace FoodDelivery.Data
 
         public void UpdateOrder(Order order)
         {
-            //Nothing
+             _context.Orders.Update(order);
         }
     }
 }

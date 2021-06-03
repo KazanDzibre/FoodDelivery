@@ -5,11 +5,13 @@ namespace FoodDelivery.Models
 	public class Order
 	{
 		public int Id { get; set; }
+
 		[Required]
-		public string Restaurant_id { get; set; }
+		public string Restaurant { get; set; }
+									
 		[Required]
-		public string address { get; set; }
+		public string Address { get; set; }
 		
-		public int DriverId { get; set; }
+		public User? Driver{ get; set; }
 	}
 }
