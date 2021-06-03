@@ -22,7 +22,6 @@ namespace FoodDelivery.Controllers
 		}
 
 		//POST orders/post
-		[Authorize("Dispatcher")]
 		[HttpPost("post")]
 		public ActionResult CreateOrder(CreateOrderDto createOrderDto)
 		{
