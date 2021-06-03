@@ -24,7 +24,7 @@ namespace FoodDelivery.Data
 		}
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-			var user = _context.Users.FirstOrDefault(x => x.UserName == model.UserName && x.Password == model.Password);
+			var user = _context.Users.FirstOrDefault(x => x.UserName == model.UserName && x.Password == model.Password && x.Type == model.Type);
 			if(user == null) return null;
 
 			var token = generateJwtToken(user);

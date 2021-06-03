@@ -23,6 +23,7 @@ namespace FoodDelivery.Controllers
 		}
 
 		//POST users/register
+		[Authorize("Admin")]
 		[HttpPost("register")]
 		public ActionResult SignInUser(UserRegisterDto userRegisterDto)
 		{
@@ -41,7 +42,7 @@ namespace FoodDelivery.Controllers
 
 			if(response == null)
 			{
-				return BadRequest(new { message = "Username or password is incorrect" });
+				return BadRequest(new { message = "Wrong Username or Password!" });
 			}
 
 			return Ok(response);
@@ -49,7 +50,7 @@ namespace FoodDelivery.Controllers
 
 
 		// GET users
-		[Authorize]
+		[Authorize("Admin")]
 		[HttpGet]
 		public ActionResult<IEnumerable<UserReadDto>> GetAll()
 		{
