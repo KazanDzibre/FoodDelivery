@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using FoodDelivery.Models;
 
 namespace FoodDelivery.Data
@@ -13,32 +15,41 @@ namespace FoodDelivery.Data
 		}
         public void CreateOrder(Order order)
         {
-            throw new System.NotImplementedException();
+			if(order == null)
+			{
+				throw new ArgumentNullException(nameof(order));
+			}
+
+			_context.Orders.Add(order);
         }
 
         public void DeleteOrder(Order order)
         {
-            throw new System.NotImplementedException();
+			if(order == null)
+			{
+				throw new ArgumentNullException(nameof(order));
+			}
+			_context.Orders.Remove(order);
         }
 
         public IEnumerable<Order> GetAll()
         {
-            throw new System.NotImplementedException();
+			return _context.Orders.ToList();
         }
 
-        public Order GetById(int id)
+        public Order GetOrdersById(int id)
         {
-            throw new System.NotImplementedException();
+			return _context.Orders.FirstOrDefault(x => x.Id == id);
         }
 
         public bool SaveChanges()
         {
-            throw new System.NotImplementedException();
+			return (_context.SaveChanges() >= 0);
         }
 
         public void UpdateOrder(Order order)
         {
-            throw new System.NotImplementedException();
+            //Nothing
         }
     }
 }

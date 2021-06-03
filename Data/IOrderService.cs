@@ -7,7 +7,7 @@ namespace FoodDelivery.Data
 	{
 		bool SaveChanges();	
 		IEnumerable<Order> GetAll();  // R
-		Order GetById(int id);		 // R
+		Order GetOrdersById(int id);		 // R
 		void CreateOrder(Order order);  //CreateUser prakticno C
 		void UpdateOrder(Order order);	 // U
 		void DeleteOrder(Order order);  // D

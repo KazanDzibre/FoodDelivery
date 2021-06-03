@@ -9,6 +9,9 @@ namespace FoodDelivery.Profiles
 		public OrdersProfile()
 		{
 			CreateMap<Order,CreateOrderDto>();
+			CreateMap<CreateOrderDto, Order>();
+			CreateMap<ReadOrderDto, Order>();
+			CreateMap<Order, ReadOrderDto>();
 		}
 	}
 }
