@@ -6,7 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FoodDelivery.Data;
+using FoodDelivery.Service;
 
 namespace FoodDelivery.Helpers
 {
@@ -21,7 +21,7 @@ namespace FoodDelivery.Helpers
             _appSettings = appSettings.Value;
         }
 
-        public async Task Invoke(HttpContext context, IUserService userService)
+        public async Task Invoke(HttpContext context, UserService userService)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
@@ -31,7 +31,7 @@ namespace FoodDelivery.Helpers
             await _next(context);
         }
 
-        private void attachUserToContext(HttpContext context, IUserService userService, string token)
+        private void attachUserToContext(HttpContext context, UserService userService, string token)
         {
             try
             {
@@ -52,6 +52,7 @@ namespace FoodDelivery.Helpers
 
                 // attach user to context on successful jwt validation
                 context.Items["User"] = userService.GetById(userId);
+
             }
             catch
             {

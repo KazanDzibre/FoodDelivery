@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using FoodDelivery.Models;
 
-namespace FoodDelivery.Data
+namespace FoodDelivery.Service
 {
-    public class OrderService : IOrderService
+    public class OrderService
     {
         private readonly Context _context;
 

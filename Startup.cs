@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FoodDelivery.Data;
 using FoodDelivery.Helpers;
+using FoodDelivery.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,8 +38,6 @@ namespace FoodDelivery1
 
 
 			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-			services.AddScoped<IUserService, UserService>();
-			services.AddScoped<IOrderService,OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

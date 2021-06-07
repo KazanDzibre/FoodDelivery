@@ -4,9 +4,8 @@ using System.Text.Json.Serialization;
 
 namespace FoodDelivery.Models
 {
-	public class User
+	public class User : Entity
 	{
-		public int Id { get; set; } //Ovo ce prebacimo u GUID
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		[Required]
@@ -14,13 +13,13 @@ namespace FoodDelivery.Models
 		public string UserName { get; set; }
 		[Required]
 		[MaxLength(10)]
-		public string Type { get; set; }  // vidi ovo dal da napravim sa nekim enum typeom, nzm za c# koja je fora videcemo
+		public string Type { get; set; }  
 
 		//ovo ce se tice samo drivera
 		public double longitude { get; set; }
 		public double latitude { get; set; }
 
-		public List<Order> orders = new List<Order>();
+		public ICollection<Order> Orders { get; set; }
 
 		[JsonIgnore]
 		[Required]
